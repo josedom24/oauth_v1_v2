@@ -30,9 +30,9 @@ def get_access_token(TOKENS):
                    resource_owner_secret=TOKENS["request_token_secret"],
                    verifier=TOKENS["verifier"],)
 	r = requests.post(url=ACCESS_TOKEN_URL, auth=oauth)
-    credentials = parse_qs(r.content)
-    TOKENS["access_token"] = credentials.get('oauth_token')[0]
-    TOKENS["access_token_secret"] = credentials.get('oauth_token_secret')[0]
+	credentials = parse_qs(r.content)
+	TOKENS["access_token"] = credentials.get('oauth_token')[0]
+	TOKENS["access_token_secret"] = credentials.get('oauth_token_secret')[0]
 
 @get('/')
 def index():
