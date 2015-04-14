@@ -23,7 +23,7 @@ def get_request_token():
     TOKENS["request_token"] = credentials.get('oauth_token')[0]
     TOKENS["request_token_secret"] = credentials.get('oauth_token_secret')[0]
     
-def get_access_token():
+def get_access_token(TOKENS):
 	oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
                    resource_owner_key=TOKENS["request_token"],
@@ -44,7 +44,7 @@ def index():
 @get('/twittear')
 def get_verifier():
 	TOKENS["verifier"] = request.query.oauth_verifier
-	get_access_token()
+	get_access_token(TOKENS)
 	return template('tweet')
 
 @post('/twittear')
