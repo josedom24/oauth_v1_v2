@@ -61,7 +61,7 @@ def tweet_submit():
 	if r.status_code == 200:
 		return "<p>Tweet properly sent</p>"
 	else:
-    	return "<p>Unable to send tweet</p>"
+		return "<p>Unable to send tweet</p>"
 
 # This must be added in order to do correct path lookups for the views
 import os
