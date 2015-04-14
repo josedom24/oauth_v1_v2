@@ -60,7 +60,7 @@ def tweet_submit():
                       auth=oauth)
 	if r.status_code == 200:
 		return "<p>Tweet properly sent</p>"
-    else:
+	else:
     	return "<p>Unable to send tweet</p>"
 
 # This must be added in order to do correct path lookups for the views
