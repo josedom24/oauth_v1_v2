@@ -15,13 +15,13 @@ CONSUMER_SECRET = "JeAiQ9IyFJdp3LWrBTl3EBbaqQgSuk0D1aP63JqGcq8lQxRa0c"
 TOKENS = {}
 
 def get_request_token():
-    oauth = OAuth1(CONSUMER_KEY,
-                   client_secret=CONSUMER_SECRET,
-    )
-    r = requests.post(url=REQUEST_TOKEN_URL, auth=oauth)
-    credentials = parse_qs(r.content)
-    TOKENS["request_token"] = credentials.get('oauth_token')[0]
-    TOKENS["request_token_secret"] = credentials.get('oauth_token_secret')[0]
+    # oauth = OAuth1(CONSUMER_KEY,
+    #                client_secret=CONSUMER_SECRET,
+    # )
+    # r = requests.post(url=REQUEST_TOKEN_URL, auth=oauth)
+    # credentials = parse_qs(r.content)
+    # TOKENS["request_token"] = credentials.get('oauth_token')[0]
+    # TOKENS["request_token_secret"] = credentials.get('oauth_token_secret')[0]
     authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
     return template('index.tpl', authorize_url=authorize_url)
 
