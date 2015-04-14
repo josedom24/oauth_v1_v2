@@ -30,6 +30,7 @@ def get_access_token(TOKENS):
                    resource_owner_secret=TOKENS["request_token_secret"],
                    verifier=TOKENS["verifier"],
     )
+
     r = requests.post(url=ACCESS_TOKEN_URL, auth=oauth)
     credentials = parse_qs(r.content)
     TOKENS["access_token"] = credentials.get('oauth_token')[0]
