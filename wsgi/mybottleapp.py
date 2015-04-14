@@ -29,7 +29,7 @@ def get_request_token():
 def index():
     get_request_token()
     authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
-	return template('index.tpl', authorize_url=authorize_url)
+    return template('index.tpl', authorize_url=authorize_url)
 
 
 
