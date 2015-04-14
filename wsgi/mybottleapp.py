@@ -22,7 +22,8 @@ def get_request_token():
     # credentials = parse_qs(r.content)
     # TOKENS["request_token"] = credentials.get('oauth_token')[0]
     # TOKENS["request_token_secret"] = credentials.get('oauth_token_secret')[0]
-    authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
+    #authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
+    authorize_url = AUTHENTICATE_URL 
     return template('index.tpl', authorize_url=authorize_url)
 
 
