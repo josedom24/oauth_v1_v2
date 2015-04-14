@@ -25,7 +25,7 @@ def get_request_token():
     
 
 
-@route('/')
+@get('/')
 def index():
     get_request_token()
     authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
