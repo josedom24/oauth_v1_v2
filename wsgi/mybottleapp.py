@@ -2,6 +2,7 @@
 from bottle import default_app, get, post, template, request, static_file, response
 import requests
 from requests_oauthlib import OAuth1
+from requests_oauthlib import OAuth2Session
 from urlparse import parse_qs
 
 
