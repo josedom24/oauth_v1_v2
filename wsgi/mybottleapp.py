@@ -22,7 +22,9 @@ client_id='709108337086-e8enc93g0s39o2elbjnfpt13c3ia343q.apps.googleusercontent.
 client_secret = 'UsHozbjZlmUZGQwhIpatPlU2'
 redirect_uri = 'https://oauth-iesgn.rhcloud.com/google'
 scope = ['https://www.googleapis.com/auth/youtube']
-oauth2 =OAuth2Session(1)
+oauth2 = OAuth2Session(client_id, redirect_uri=redirect_uri,scope=scope)
+authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth',
+        access_type="offline", approval_prompt="force")
 
 def get_request_token():
     oauth = OAuth1(CONSUMER_KEY,
@@ -77,9 +79,7 @@ def tweet_submit():
 
 @get('/youtube')
 def info_youtube():
-  oauth2 = OAuth2Session(client_id, redirect_uri=redirect_uri,scope=scope)
-  authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth',
-        access_type="offline", approval_prompt="force")
+  
   return "<a href='%s'>Perfil de youtube</a>" % authorization_url
 
 @get('/google')
