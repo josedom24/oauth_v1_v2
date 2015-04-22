@@ -84,7 +84,7 @@ def info_youtube():
 
 @get('/google')
 def info_perfil():
-  return '<p>%s</p>' % request.path
+  return '<p>%s</p>' % request.url
 
 
 # This must be added in order to do correct path lookups for the views
