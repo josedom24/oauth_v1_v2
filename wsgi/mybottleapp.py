@@ -82,6 +82,10 @@ def info_youtube():
         access_type="offline", approval_prompt="force")
   return "<a href='%s'>Perfil de youtube</a>" % authorization_url
 
+@get('/google')
+def info_perfil():
+  return '<p>%s</p>' % request.path
+
 
 # This must be added in order to do correct path lookups for the views
 import os
