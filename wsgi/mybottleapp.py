@@ -22,7 +22,7 @@ client_id='709108337086-e8enc93g0s39o2elbjnfpt13c3ia343q.apps.googleusercontent.
 client_secret = 'UsHozbjZlmUZGQwhIpatPlU2'
 redirect_uri = 'http://oauth-iesgn.rhcloud.com/google'
 scope = ['https://www.googleapis.com/auth/youtube']
-oauth2 = ""
+oauth2 =OAuth2Session(0)
 
 def get_request_token():
     oauth = OAuth1(CONSUMER_KEY,
