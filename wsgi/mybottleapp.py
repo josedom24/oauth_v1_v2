@@ -14,6 +14,15 @@ CONSUMER_SECRET = "JeAiQ9IyFJdp3LWrBTl3EBbaqQgSuk0D1aP63JqGcq8lQxRa0c"
 
 TOKENS = {}
 
+
+###oauth2
+
+client_id='709108337086-e8enc93g0s39o2elbjnfpt13c3ia343q.apps.googleusercontent.com'
+client_secret = 'UsHozbjZlmUZGQwhIpatPlU2'
+redirect_uri = 'http://oauth-iesgn.rhcloud.com/google'
+
+
+
 def get_request_token():
     oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
@@ -62,6 +71,16 @@ def tweet_submit():
 		return "<p>Tweet properly sent</p>"
 	else:
 		return "<p>Unable to send tweet</p>"
+
+###oauth2
+
+@get('/youtube')
+def info_youtube():
+  oauth = OAuth2Session(client_id, redirect_uri=redirect_uri,scope=scope)
+  authorization_url, state = oauth.authorization_url('https://accounts.google.com/o/oauth2/auth',
+        access_type="offline", approval_prompt="force")
+  return "<a href='%s'>Perfil de youtube</a>" % authorization_url
+
 
 # This must be added in order to do correct path lookups for the views
 import os
