@@ -20,7 +20,7 @@ TOKENS = {}
 
 client_id='709108337086-e8enc93g0s39o2elbjnfpt13c3ia343q.apps.googleusercontent.com'
 client_secret = 'UsHozbjZlmUZGQwhIpatPlU2'
-redirect_uri = 'http://oauth-iesgn.rhcloud.com/google'
+redirect_uri = 'https://oauth-iesgn.rhcloud.com/google'
 scope = ['https://www.googleapis.com/auth/youtube']
 oauth2 =OAuth2Session(1)
 
