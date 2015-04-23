@@ -84,16 +84,22 @@ def info_youtube():
   return "<a href='%s'>Perfil de youtube</a>" % authorization_url
 
 @get('/google')
-def info_perfil():
+def get_token():
 
   oauth2 = OAuth2Session(client_id, state=request.cookies.oauth_state,redirect_uri=redirect_uri)
   token = oauth2.fetch_token(token_url, client_secret=client_secret,authorization_response=request.url)
 
 
+  response.set_cookie("token", token)
+  redirect("/perfil")
 
+  
+@get('/perfil')
+def info():
+  oauth2 = OAuth2Session(client_id, token=request.cookies.token)
   r = oauth2.get('https://www.googleapis.com/oauth2/v1/userinfo')
-  return '<p>%s</p>' % r.content
-
+  doc=json.loads(r.content)
+  return '<p>%s</p>' % r.content  
 
 # This must be added in order to do correct path lookups for the views
 import os
