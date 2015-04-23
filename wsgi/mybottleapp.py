@@ -90,7 +90,7 @@ def get_token():
   token = oauth2.fetch_token(token_url, client_secret=client_secret,authorization_response=request.url)
 
 
-  response.set_cookie("token", "token")
+  response.set_cookie("token", token)
   redirect("/perfil")
 
   
