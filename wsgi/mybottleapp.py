@@ -23,8 +23,7 @@ client_secret = 'UsHozbjZlmUZGQwhIpatPlU2'
 redirect_uri = 'https://oauth-iesgn.rhcloud.com/google'
 scope = ['https://www.googleapis.com/auth/youtube','https://www.googleapis.com/auth/userinfo.profile']
 token_url = "https://accounts.google.com/o/oauth2/token"
-global session 
-session = {}
+
 
 def get_request_token():
     oauth = OAuth1(CONSUMER_KEY,
