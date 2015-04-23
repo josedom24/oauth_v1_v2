@@ -21,10 +21,8 @@ TOKENS = {}
 client_id='709108337086-e8enc93g0s39o2elbjnfpt13c3ia343q.apps.googleusercontent.com'
 client_secret = 'UsHozbjZlmUZGQwhIpatPlU2'
 redirect_uri = 'https://oauth-iesgn.rhcloud.com/google'
-scope = ['https://www.googleapis.com/auth/youtube']
-oauth2 = OAuth2Session(client_id, redirect_uri=redirect_uri,scope=scope)
-authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth',
-        access_type="offline", approval_prompt="force")
+scope = ['https://www.googleapis.com/auth/youtube','https://www.googleapis.com/auth/userinfo.profile']
+token_url = "https://accounts.google.com/o/oauth2/token"
 
 def get_request_token():
     oauth = OAuth1(CONSUMER_KEY,
@@ -79,16 +77,21 @@ def tweet_submit():
 
 @get('/youtube')
 def info_youtube():
-  
+  oauth2 = OAuth2Session(client_id, redirect_uri=redirect_uri,scope=scope)
+  authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth')
+  session['oauth_state'] = state
   return "<a href='%s'>Perfil de youtube</a>" % authorization_url
 
 @get('/google')
 def info_perfil():
-  token = oauth2.fetch_token('https://accounts.google.com/o/oauth2/token',
-        authorization_response=request.url,
-        client_secret=client_secret)
-  r = oauth.get('https://www.googleapis.com/oauth2/v1/userinfo')
-  return '<p>%s</p>' % r.text
+  oauth2 = OAuth2Session(client_id, state=session['oauth_state'])
+  token = oauth2.fetch_token(token_url, client_secret=client_secret,
+                               authorization_response=request.url)
+
+
+
+  r = oauth2.get('https://www.googleapis.com/oauth2/v1/userinfo')
+  return '<p>%s</p>' % r.content
 
 
 # This must be added in order to do correct path lookups for the views
