@@ -78,7 +78,7 @@ def tweet_submit():
 
 @get('/youtube')
 def info_youtube():
-  if 
+   
   oauth2 = OAuth2Session(client_id, redirect_uri=redirect_uri,scope=scope)
   authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth')
   response.set_cookie("oauth_state", state)
