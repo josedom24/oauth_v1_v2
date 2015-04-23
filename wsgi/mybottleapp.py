@@ -86,7 +86,7 @@ def info_youtube():
 @get('/google')
 def info_perfil():
 
-  oauth2 = OAuth2Session(client_id, state=request.cookies.oauth_state)
+  oauth2 = OAuth2Session(client_id, state=request.cookies.oauth_state,redirect_uri=redirect_uri)
   token = oauth2.fetch_token(token_url, client_secret=client_secret,authorization_response=request.url)
 
 
