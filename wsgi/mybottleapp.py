@@ -78,6 +78,7 @@ def tweet_submit():
 
 @get('/youtube')
 def info_youtube():
+  if 
   oauth2 = OAuth2Session(client_id, redirect_uri=redirect_uri,scope=scope)
   authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth')
   response.set_cookie("oauth_state", state)
@@ -100,7 +101,7 @@ def info():
   oauth2 = OAuth2Session(client_id, token=token)
   r = oauth2.get('https://www.googleapis.com/oauth2/v1/userinfo')
   doc=json.loads(r.content)
-  return '<p>%s</p>' % r.content  
+  return '<p>%s</p><img src="%s"/>' % (doc["name"],doc["picture"])
 
 # This must be added in order to do correct path lookups for the views
 import os
