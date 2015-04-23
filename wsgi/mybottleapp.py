@@ -90,13 +90,14 @@ def get_token():
   token = oauth2.fetch_token(token_url, client_secret=client_secret,authorization_response=request.url)
 
 
-  response.set_cookie("token", token)
+  response.set_cookie("token", token,secret='some-secret-key')
   redirect("/perfil")
 
   
 @get('/perfil')
 def info():
-  oauth2 = OAuth2Session(client_id, token=request.cookies.token)
+  token=request.get_cookie("token", secret='some-secret-key')
+  oauth2 = OAuth2Session(client_id, token=token)
   r = oauth2.get('https://www.googleapis.com/oauth2/v1/userinfo')
   doc=json.loads(r.content)
   return '<p>%s</p>' % r.content  
