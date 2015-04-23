@@ -81,13 +81,14 @@ def tweet_submit():
 def info_youtube():
   oauth2 = OAuth2Session(client_id, redirect_uri=redirect_uri,scope=scope)
   authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth')
-  session['oauth_state'] = state
+  response.set_cookie("oauth_state", "state")
   return "<a href='%s'>Perfil de youtube</a>" % authorization_url
 
 @get('/google')
 def info_perfil():
-  oauth2 = OAuth2Session(client_id, state=session['oauth_state'])
-  token = oauth2.fetch_token(token_url, client_secret=client_secret,redirect_uri=redirect_uri,authorization_response=request.url)
+  
+  oauth2 = OAuth2Session(client_id, state=request.cookies.oauth_state)
+  token = oauth2.fetch_token(token_url, client_secret=client_secret,authorization_response=request.url)
 
 
 
