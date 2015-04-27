@@ -83,11 +83,13 @@ def tweet_submit():
 def info_youtube():
   token=request.get_cookie("token", secret='some-secret-key')
   token_ok = True
+  mansaje ="go"
   try:
     oauth2 = OAuth2Session(client_id, token=token)
+    mensaje = mensaje + "pepe"
   except TokenExpiredError as e:
     token_ok = False
-  return "<p>%s %s</p>" % (token_ok, token)
+  return "<p>%s %s %s</p>" % (mensaje, token_ok, token)
   if token_ok:
     redirect("/perfil")
   else:
