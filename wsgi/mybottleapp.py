@@ -78,19 +78,22 @@ def tweet_submit():
 		return "<p>Unable to send tweet</p>"
 
 ###oauth2
+def token_valido():
+  token=request.get_cookie("token", secret='some-secret-key')
+  if token:
+    token_ok = True
+    try:
+      oauth2 = OAuth2Session(client_id, token=token)
+      r = oauth2.get('https://www.googleapis.com/oauth2/v1/userinfo')
+    except TokenExpiredError as e:
+      token_ok = False
+  else:
+    token_ok = False
+  return token_ok
 
 @get('/youtube')
 def info_youtube():
-  token=request.get_cookie("token", secret='some-secret-key')
-  token_ok = True
-  return "%s" % token
-  try:
-    oauth2 = OAuth2Session(client_id, token=token)
-    r = oauth2.get('https://www.googleapis.com/oauth2/v1/userinfo')
-  except TokenExpiredError as e:
-    token_ok = False
-  
-  if token_ok:
+  if token_valido():
     redirect("/perfil")
   else:
     response.set_cookie("token", '',max_age=0)
