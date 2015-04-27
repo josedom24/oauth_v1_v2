@@ -119,8 +119,12 @@ def info():
   oauth2 = OAuth2Session(client_id, token=token)
   r = oauth2.get('https://www.googleapis.com/oauth2/v1/userinfo')
   doc=json.loads(r.content)
-  return '<p>%s</p><img src="%s"/>' % (doc["name"],doc["picture"])
+  return '<p>%s</p><img src="%s"/><br/><a href="/logout">Cerrar</a>' % (doc["name"],doc["picture"])
 
+@get('/logout')
+def salir():
+  response.set_cookie("token", '',max_age=0)
+  redirect('/youtube')
 # This must be added in order to do correct path lookups for the views
 import os
 from bottle import TEMPLATE_PATH
