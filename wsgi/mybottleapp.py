@@ -92,7 +92,8 @@ def info_youtube():
     authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth')
     response.set_cookie("oauth_state", state)
     return "<a href='%s'>Perfil de youtube</a>" % authorization_url
-redirect("/perfil")
+  redirect("/perfil")
+
 @get('/google')
 def get_token():
 
