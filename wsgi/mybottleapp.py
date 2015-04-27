@@ -86,8 +86,8 @@ def info_youtube():
   try:
     oauth2 = OAuth2Session(client_id, token=token)
   except TokenExpiredError as e:
-    token_ok= False
-    
+    token_ok = False
+  return "<p>%s %s</p>" % (token_ok, token)
   if token_ok:
     redirect("/perfil")
   else:
