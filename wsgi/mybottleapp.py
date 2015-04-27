@@ -87,12 +87,15 @@ def info_youtube():
     oauth2 = OAuth2Session(client_id, token=token)
   except TokenExpiredError as e:
     token_ok= False
+    
+  if token_ok:
+    redirect("/perfil")
+  else:
     response.set_cookie("token", '',max_age=0)
     oauth2 = OAuth2Session(client_id, redirect_uri=redirect_uri,scope=scope)
     authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth')
     response.set_cookie("oauth_state", state)
     return "<a href='%s'>Perfil de youtube</a>" % authorization_url
-  redirect("/perfil")
 
 @get('/google')
 def get_token():
