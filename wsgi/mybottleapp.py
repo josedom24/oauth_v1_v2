@@ -115,11 +115,14 @@ def get_token():
   
 @get('/perfil')
 def info():
-  token=request.get_cookie("token", secret='some-secret-key')
-  oauth2 = OAuth2Session(client_id, token=token)
-  r = oauth2.get('https://www.googleapis.com/oauth2/v1/userinfo')
-  doc=json.loads(r.content)
-  return '<p>%s</p><img src="%s"/><br/><a href="/logout">Cerrar</a>' % (doc["name"],doc["picture"])
+  if token_valido():
+    token=request.get_cookie("token", secret='some-secret-key')
+    oauth2 = OAuth2Session(client_id, token=token)
+    r = oauth2.get('https://www.googleapis.com/oauth2/v1/userinfo')
+    doc=json.loads(r.content)
+    return '<p>%s</p><img src="%s"/><br/><a href="/logout">Cerrar</a>' % (doc["name"],doc["picture"])
+  else:
+    redirect('/youtube')
 
 @get('/logout')
 def salir():
