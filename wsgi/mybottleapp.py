@@ -83,7 +83,7 @@ def tweet_submit():
 def info_youtube():
   token=request.get_cookie("token", secret='some-secret-key')
   token_ok = True
-  mansaje ="go"
+  mensaje ="go"
   try:
     oauth2 = OAuth2Session(client_id, token=token)
     mensaje = mensaje + "pepe"
