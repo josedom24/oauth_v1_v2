@@ -87,12 +87,12 @@ def info_youtube():
       except TokenExpiredError as e:
         response.set_cookie("token", '',max_age=0)
         redirect("/youtube")
-    redirect("/perfil")
+      redirect("/perfil")
   else:
-    oauth2 = OAuth2Session(client_id, redirect_uri=redirect_uri,scope=scope)
-    authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth')
-    response.set_cookie("oauth_state", state)
-    return "<a href='%s'>Perfil de youtube</a>" % authorization_url
+      oauth2 = OAuth2Session(client_id, redirect_uri=redirect_uri,scope=scope)
+      authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth')
+      response.set_cookie("oauth_state", state)
+      return "<a href='%s'>Perfil de youtube</a>" % authorization_url
 
 @get('/google')
 def get_token():
