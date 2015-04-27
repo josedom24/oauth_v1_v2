@@ -13,13 +13,15 @@ ACCESS_TOKEN_URL = "https://api.twitter.com/oauth/access_token"
 CONSUMER_KEY = "MYQ9JgvCMJdjcqtX4dRnk1G4S"
 CONSUMER_SECRET = "JeAiQ9IyFJdp3LWrBTl3EBbaqQgSuk0D1aP63JqGcq8lQxRa0c"
 
+
 TOKENS = {}
 
 
 ###oauth2
 
 client_id='709108337086-e8enc93g0s39o2elbjnfpt13c3ia343q.apps.googleusercontent.com'
-client_secret = 'UsHozbjZlmUZGQwhIpatPlU2'
+
+client_secret=open(os.path.join(os.path.dirname(__file__),"clave.txt"),'r').readline()
 redirect_uri = 'https://oauth-iesgn.rhcloud.com/google'
 scope = ['https://www.googleapis.com/auth/youtube','https://www.googleapis.com/auth/userinfo.profile']
 token_url = "https://accounts.google.com/o/oauth2/token"
