@@ -82,16 +82,17 @@ def tweet_submit():
 @get('/youtube')
 def info_youtube():
   token=request.get_cookie("token", secret='some-secret-key')
+  token_ok = True
   try:
     oauth2 = OAuth2Session(client_id, token=token)
-    redirect("/perfil")
   except TokenExpiredError as e:
+    token_ok= False
     response.set_cookie("token", '',max_age=0)
     oauth2 = OAuth2Session(client_id, redirect_uri=redirect_uri,scope=scope)
     authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth')
     response.set_cookie("oauth_state", state)
     return "<a href='%s'>Perfil de youtube</a>" % authorization_url
-
+redirect("/perfil")
 @get('/google')
 def get_token():
 
