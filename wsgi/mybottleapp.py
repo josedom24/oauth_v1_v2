@@ -86,6 +86,7 @@ def info_youtube():
   mensaje ="go"
   try:
     oauth2 = OAuth2Session(client_id, token=token)
+    r = oauth2.get('https://www.googleapis.com/oauth2/v1/userinfo')
     mensaje = mensaje + "pepe"
   except TokenExpiredError as e:
     token_ok = False
