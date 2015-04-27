@@ -83,7 +83,7 @@ def tweet_submit():
 def info_youtube():
   token=request.get_cookie("token", secret='some-secret-key')
   token_ok = True
-  
+  return "%s" % token
   try:
     oauth2 = OAuth2Session(client_id, token=token)
     r = oauth2.get('https://www.googleapis.com/oauth2/v1/userinfo')
