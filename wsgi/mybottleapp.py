@@ -31,9 +31,9 @@ def get_request_token():
     TOKENS["request_token_secret"] = credentials.get('oauth_token_secret')[0]
     
 def get_access_token(TOKENS):
-  print TOKENS["request_token"]
-  print TOKENS["request_token_secret"]
-  print TOKENS["verifier"]
+  print "*********:"+TOKENS["request_token"]
+  print "*********:"+TOKENS["request_token_secret"]
+  print "*********:"+TOKENS["verifier"]
 
   oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
