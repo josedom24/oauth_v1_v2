@@ -50,11 +50,13 @@ def get_access_token(TOKENS):
 
 @get('/')
 def index():
-   return template('index.tpl')
+  print TOKENS
+  return template('index.tpl')
 
 @get('/twitter')
 def twitter():
     get_request_token()
+    print TOKENS
     authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
     return template('oauth1.tpl', authorize_url=authorize_url)
 
@@ -63,6 +65,7 @@ def twitter():
 def get_verifier():
 	TOKENS["verifier"] = request.query.oauth_verifier
 	get_access_token(TOKENS)
+  print TOKENS
 	return template('tweet')
 
 @post('/twittear')
