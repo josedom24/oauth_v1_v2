@@ -41,11 +41,11 @@ def get_access_token(TOKENS):
 	TOKENS["access_token"] = credentials.get('oauth_token')[0]
 	TOKENS["access_token_secret"] = credentials.get('oauth_token_secret')[0]
 
-@get('/')
+@get('/twitter')
 def index():
     get_request_token()
     authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
-    return template('index.tpl', authorize_url=authorize_url)
+    return template('oauth1.tpl', authorize_url=authorize_url)
 
 @get('/callback')
 @get('/twittear')
