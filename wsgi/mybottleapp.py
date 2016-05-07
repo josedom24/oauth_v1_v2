@@ -34,8 +34,8 @@ def get_access_token(TOKENS):
   print TOKENS["request_token"]
   print TOKENS["request_token_secret"]
   print TOKENS["verifier"]
-  
-	oauth = OAuth1(CONSUMER_KEY,
+
+  oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
                    resource_owner_key=TOKENS["request_token"],
                    resource_owner_secret=TOKENS["request_token_secret"],
