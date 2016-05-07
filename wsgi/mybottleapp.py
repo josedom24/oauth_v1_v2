@@ -52,13 +52,15 @@ def index():
 def twitter():
     get_request_token()
     authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
+    response.set_cookie("request_token", TOKENS["request_token"],secret='some-secret-key')
+    response.set_cookie("request_token_secret", TOKENS["request_token_secret"],secret='some-secret-key')
     return template('oauth1.tpl', authorize_url=authorize_url)
 
 @get('/callback')
 @get('/twittear')
 def get_verifier():
-  if not TOKENS.has_key("request_token"):
-    print "ERRORRRRRRRRRRRRR"
+  TOKENS["request_token"]=request.get_cookie("request_token", secret='some-secret-key')
+  TOKENS["request_token_secret"]=request.get_cookie("request_token_secret", secret='some-secret-key')
   TOKENS["verifier"] = request.query.oauth_verifier
   get_access_token(TOKENS)
   return template('tweet')
