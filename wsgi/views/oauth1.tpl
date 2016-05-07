@@ -8,7 +8,7 @@
   	<ul>
   		<li>Para comenzar, vamos a a acceder a la url de autentificación de twitter (AUTHENTICATE_URL)(https://api.twitter.com/oauth/authenticate?oauth_token=) y utilizamos el token de petición (request token)</li>
   		<li>Función get_request_token(): Para obtener el token de petición hacemos una petición POST a la url de solicitud de token de petición (REQUEST_TOKEN_URL)(https://api.twitter.com/oauth/request_token) de forma autentificada usando nuestras credenciales (CONSUMER_KEY,CONSUMER_SECRET)</li>
-  		<code>
+  		<pre>
   				import requests
           from requests_oauthlib import OAuth1
           from urlparse import parse_qs
@@ -40,7 +40,7 @@
                 get_request_token()
                 authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
                 return template('oauth1.tpl', authorize_url=authorize_url)
-  		</code>
+  		</pre>
 
   		<li>Una vez que nos hemos autentificado de forma adecuda la aplicación (en este caso twitter) nos devuelve a la Callback URL (http://oauth-iesgn.rhcloud.com/callback)
   	</ul>
