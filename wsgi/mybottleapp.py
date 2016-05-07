@@ -12,10 +12,8 @@ AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate?oauth_token="
 ACCESS_TOKEN_URL = "https://api.twitter.com/oauth/access_token"
 
 
-with open("./key.txt", "r") as archivo: 
-    CONSUMER_KEY = archivo.read()  
-with open("./secret.txt", "r") as archivo: 
-    CONSUMER_SECRET = archivo.read()  
+CONSUMER_KEY = "jWdjfLA3SbvWNPnE7G8LyoEAI"
+CONSUMER_SECRET = "zOuclYiBmfKDztZaKtd77KL0hPf2DbvaQfbYDNNn83P6d3ldue"
 
 TOKENS = {}
 
