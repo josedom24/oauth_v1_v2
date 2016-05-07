@@ -57,7 +57,7 @@ def twitter():
 @get('/callback')
 @get('/twittear')
 def get_verifier():
-  if not TOKENS["request_token"]:
+  if not TOKENS.has_key("request_token"):
     print "ERRORRRRRRRRRRRRR"
   TOKENS["verifier"] = request.query.oauth_verifier
   get_access_token(TOKENS)
