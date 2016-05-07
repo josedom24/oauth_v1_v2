@@ -164,7 +164,7 @@ def salir():
   response.set_cookie("token", '',max_age=0)
   redirect('/youtube')
 
-@route('/static/<filepath:path>')
+@get('/static/<filepath:path>')
 def server_static(filepath):
     return static_file(filepath, root='static')
 
