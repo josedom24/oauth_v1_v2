@@ -15,7 +15,7 @@ CONSUMER_KEY = "MYQ9JgvCMJdjcqtX4dRnk1G4S"
 CONSUMER_SECRET = "JeAiQ9IyFJdp3LWrBTl3EBbaqQgSuk0D1aP63JqGcq8lQxRa0c"
 
 
-
+TOKENS = {}
 
 ###oauth1
 
@@ -27,10 +27,8 @@ def get_request_token():
     )
     r = requests.post(url=REQUEST_TOKEN_URL, auth=oauth)
     credentials = parse_qs(r.content)
-    response.set_cookie("request_token", '',max_age=0)
-    response.set_cookie("request_token", credentials.get('oauth_token')[0],secret='some-secret-key')
-    response.set_cookie("request_token_secret", '',max_age=0)
-    response.set_cookie("request_token_secret", credentials.get('oauth_token_secret')[0],secret='some-secret-key')
+    TOKENS["request_token"] = credentials.get('oauth_token')[0]
+    TOKENS["request_token_secret"] = credentials.get('oauth_token_secret')[0]
     
 def get_access_token(TOKENS):
   
@@ -53,12 +51,14 @@ def index():
 @get('/twitter')
 def twitter():
     get_request_token()
-    authorize_url = AUTHENTICATE_URL + request.get_cookie("request_token", secret='some-secret-key')
+    authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
     return template('oauth1.tpl', authorize_url=authorize_url)
 
 @get('/callback')
 @get('/twittear')
 def get_verifier():
+  if not TOKENS["request_token"]:
+    print "ERRORRRRRRRRRRRRR"
   TOKENS["verifier"] = request.query.oauth_verifier
   get_access_token(TOKENS)
   return template('tweet')
