@@ -63,6 +63,7 @@ def twitter():
 @get('/callback')
 @get('/twittear')
 def get_verifier():
+  print TOKENS
   TOKENS["verifier"] = request.query.oauth_verifier
   get_access_token(TOKENS)
   print TOKENS
