@@ -41,8 +41,12 @@ def get_access_token(TOKENS):
 	TOKENS["access_token"] = credentials.get('oauth_token')[0]
 	TOKENS["access_token_secret"] = credentials.get('oauth_token_secret')[0]
 
-@get('/twitter')
+@get('/')
 def index():
+   return template('index.tpl')
+
+@get('/twitter')
+def twitter():
     get_request_token()
     authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
     return template('oauth1.tpl', authorize_url=authorize_url)
