@@ -94,7 +94,7 @@ def tweet_submit():
   if r.status_code == 200:
     return "<p>Tweet properly sent</p>"
   else:
-    return "<p>Unable to send tweet</p>"
+    return "<p>Unable to send tweet</p>"+r.content
 
 @get('/twitter_logout')
 def twitter_logout():
