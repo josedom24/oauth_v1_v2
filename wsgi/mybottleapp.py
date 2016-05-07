@@ -105,16 +105,21 @@ def twitter_logout():
   response.set_cookie("access_token", '',max_age=0)
   response.set_cookie("access_token_secret", '',max_age=0)
   redirect('/twitter')
+
+
+
 ###oauth2
 
-
-
 client_id='709108337086-e8enc93g0s39o2elbjnfpt13c3ia343q.apps.googleusercontent.com'
-
 client_secret='UsHozbjZlmUZGQwhIpatPlU2'
 redirect_uri = 'https://oauth-iesgn.rhcloud.com/google'
 scope = ['https://www.googleapis.com/auth/youtube','https://www.googleapis.com/auth/userinfo.profile']
 token_url = "https://accounts.google.com/o/oauth2/token"
+
+
+@get('/google')
+def get_token():
+    return template('oauth2.tpl')
 
 
 def token_valido():
@@ -141,15 +146,6 @@ def info_youtube():
     response.set_cookie("oauth_state", state)
     return "<a href='%s'>Perfil de youtube</a>" % authorization_url
 
-@get('/google')
-def get_token():
-
-  oauth2 = OAuth2Session(client_id, state=request.cookies.oauth_state,redirect_uri=redirect_uri)
-  token = oauth2.fetch_token(token_url, client_secret=client_secret,authorization_response=request.url)
-
-
-  response.set_cookie("token", token,secret='some-secret-key')
-  redirect("/perfil")
 
   
 @get('/perfil')

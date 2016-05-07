@@ -6,5 +6,8 @@
   	<h1>OAuth 1</h1>
 	
     <a href="/twitter">Twitter</a>
+    <h1>OAuth 2</h1>
+  
+    <a href="/google">Google</a>
   </body>
 </html>
