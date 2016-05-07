@@ -77,7 +77,7 @@
            TOKENS["verifier"] = request.query.oauth_verifier
            get_access_token(TOKENS)
            response.set_cookie("access_token", TOKENS["access_token"],secret='some-secret-key')
-           response.set_cookie("access_token_secret", TOKENS["access_token"],secret='some-secret-key')
+           response.set_cookie("access_token_secret", TOKENS["access_token_secret"],secret='some-secret-key')
            redirect('/twittear')
 </pre>
     <li>Si tenemos guardado los tokens de acceso, significa que podemos utilizar nuestra aplicación y no hace falta autentificarnos></li>
@@ -95,6 +95,8 @@
     <pre>
       @post('/twittear')
       def tweet_submit():
+        TOKENS["access_token"]=request.get_cookie("access_token", secret='some-secret-key')
+        TOKENS["access_token_secret"]=request.get_cookie("access_token_secret", secret='some-secret-key')
         texto = request.forms.get("tweet")
         oauth = OAuth1(CONSUMER_KEY,
                          client_secret=CONSUMER_SECRET,
