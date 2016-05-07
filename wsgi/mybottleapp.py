@@ -163,6 +163,11 @@ def info():
 def salir():
   response.set_cookie("token", '',max_age=0)
   redirect('/youtube')
+
+@route('/static/<filepath:path>')
+def server_static(filepath):
+    return static_file(filepath, root='static')
+
 # This must be added in order to do correct path lookups for the views
 import os
 from bottle import TEMPLATE_PATH

@@ -9,5 +9,6 @@
     <h1>OAuth 2</h1>
   
     <a href="/google">Google</a>
+    <img src="/static/Tux.png"/>
   </body>
 </html>
