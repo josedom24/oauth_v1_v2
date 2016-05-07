@@ -64,7 +64,7 @@ def get_verifier():
   TOKENS["verifier"] = request.query.oauth_verifier
   get_access_token(TOKENS)
   response.set_cookie("access_token", TOKENS["access_token"],secret='some-secret-key')
-  response.set_cookie("access_token_secret", TOKENS["access_token"],secret='some-secret-key')
+  response.set_cookie("access_token_secret", TOKENS["access_token_secret"],secret='some-secret-key')
   redirect('/twittear')
 
 
