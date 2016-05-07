@@ -66,7 +66,7 @@ def get_verifier():
 	TOKENS["verifier"] = request.query.oauth_verifier
 	get_access_token(TOKENS)
   print TOKENS
-	return template('tweet')
+  return template('tweet')
 
 @post('/twittear')
 def tweet_submit():
