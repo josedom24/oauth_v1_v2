@@ -17,15 +17,8 @@ CONSUMER_SECRET = "JeAiQ9IyFJdp3LWrBTl3EBbaqQgSuk0D1aP63JqGcq8lQxRa0c"
 
 TOKENS = {}
 
+###oauth1
 
-###oauth2
-
-client_id='709108337086-e8enc93g0s39o2elbjnfpt13c3ia343q.apps.googleusercontent.com'
-
-client_secret='UsHozbjZlmUZGQwhIpatPlU2'
-redirect_uri = 'https://oauth-iesgn.rhcloud.com/google'
-scope = ['https://www.googleapis.com/auth/youtube','https://www.googleapis.com/auth/userinfo.profile']
-token_url = "https://accounts.google.com/o/oauth2/token"
 
 
 def get_request_token():
@@ -78,6 +71,17 @@ def tweet_submit():
 		return "<p>Unable to send tweet</p>"
 
 ###oauth2
+
+
+
+client_id='709108337086-e8enc93g0s39o2elbjnfpt13c3ia343q.apps.googleusercontent.com'
+
+client_secret='UsHozbjZlmUZGQwhIpatPlU2'
+redirect_uri = 'https://oauth-iesgn.rhcloud.com/google'
+scope = ['https://www.googleapis.com/auth/youtube','https://www.googleapis.com/auth/userinfo.profile']
+token_url = "https://accounts.google.com/o/oauth2/token"
+
+
 def token_valido():
   token=request.get_cookie("token", secret='some-secret-key')
   if token:
