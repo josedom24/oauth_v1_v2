@@ -57,13 +57,26 @@ def twitter():
     return template('oauth1.tpl', authorize_url=authorize_url)
 
 @get('/callback')
-@get('/twittear')
+
 def get_verifier():
   TOKENS["request_token"]=request.get_cookie("request_token", secret='some-secret-key')
   TOKENS["request_token_secret"]=request.get_cookie("request_token_secret", secret='some-secret-key')
   TOKENS["verifier"] = request.query.oauth_verifier
   get_access_token(TOKENS)
-  return template('tweet')
+  response.set_cookie("access_token", TOKENS["access_token"],secret='some-secret-key')
+  response.set_cookie("access_token_secret", TOKENS["access_token"],secret='some-secret-key')
+  redirect('/twittear')
+
+
+@get('/twittear')
+def twittear():
+    if request.get_cookie("access_token", secret='some-secret-key'):
+      TOKENS["access_token"]=request.get_cookie("access_token", secret='some-secret-key')
+      TOKENS["access_token_secret"]=request.get_cookie("access_token_secret", secret='some-secret-key')
+      return template('tweet')  
+    else:
+      redirect('/twitter')
+
 
 @post('/twittear')
 def tweet_submit():
