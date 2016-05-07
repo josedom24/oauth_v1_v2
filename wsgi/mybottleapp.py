@@ -87,14 +87,14 @@ def tweet_submit():
                    client_secret=CONSUMER_SECRET,
                    resource_owner_key=TOKENS["access_token"],
                    resource_owner_secret=TOKENS["access_token_secret"])
-	url = 'https://api.twitter.com/1.1/statuses/update.json'
-	r = requests.post(url=url,
+  url = 'https://api.twitter.com/1.1/statuses/update.json'
+  r = requests.post(url=url,
                       data={"status":texto},
                       auth=oauth)
-	if r.status_code == 200:
-		return "<p>Tweet properly sent</p>"
-	else:
-		return "<p>Unable to send tweet</p>"
+  if r.status_code == 200:
+    return "<p>Tweet properly sent</p>"
+  else:
+    return "<p>Unable to send tweet</p>"
 
 @get('/twitter_logout')
 def twitter_logout():
