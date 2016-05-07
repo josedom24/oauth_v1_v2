@@ -15,7 +15,7 @@ CONSUMER_KEY = "MYQ9JgvCMJdjcqtX4dRnk1G4S"
 CONSUMER_SECRET = "JeAiQ9IyFJdp3LWrBTl3EBbaqQgSuk0D1aP63JqGcq8lQxRa0c"
 
 
-TOKENS = {}
+
 
 ###oauth1
 
@@ -27,14 +27,13 @@ def get_request_token():
     )
     r = requests.post(url=REQUEST_TOKEN_URL, auth=oauth)
     credentials = parse_qs(r.content)
-    TOKENS["request_token"] = credentials.get('oauth_token')[0]
-    TOKENS["request_token_secret"] = credentials.get('oauth_token_secret')[0]
+    response.set_cookie("request_token", '',max_age=0)
+    response.set_cookie("request_token", credentials.get('oauth_token')[0],secret='some-secret-key')
+    response.set_cookie("request_token_secret", '',max_age=0)
+    response.set_cookie("request_token_secret", credentials.get('oauth_token_secret')[0],secret='some-secret-key')
     
 def get_access_token(TOKENS):
-  print "*********:"+TOKENS["request_token"]
-  print "*********:"+TOKENS["request_token_secret"]
-  print "*********:"+TOKENS["verifier"]
-
+  
   oauth = OAuth1(CONSUMER_KEY,
                    client_secret=CONSUMER_SECRET,
                    resource_owner_key=TOKENS["request_token"],
@@ -43,30 +42,25 @@ def get_access_token(TOKENS):
   
   
   r = requests.post(url=ACCESS_TOKEN_URL, auth=oauth)
-  print r.status_code
   credentials = parse_qs(r.content)
   TOKENS["access_token"] = credentials.get('oauth_token')[0]
   TOKENS["access_token_secret"] = credentials.get('oauth_token_secret')[0]
 
 @get('/')
 def index():
-  print TOKENS
   return template('index.tpl')
 
 @get('/twitter')
 def twitter():
     get_request_token()
-    print TOKENS
-    authorize_url = AUTHENTICATE_URL + TOKENS["request_token"]
+    authorize_url = AUTHENTICATE_URL + request.get_cookie("request_token", secret='some-secret-key')
     return template('oauth1.tpl', authorize_url=authorize_url)
 
 @get('/callback')
 @get('/twittear')
 def get_verifier():
-  print TOKENS
   TOKENS["verifier"] = request.query.oauth_verifier
   get_access_token(TOKENS)
-  print TOKENS
   return template('tweet')
 
 @post('/twittear')
