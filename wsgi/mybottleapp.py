@@ -110,9 +110,9 @@ def twitter_logout():
 
 ###oauth2
 
-client_id='709108337086-e8enc93g0s39o2elbjnfpt13c3ia343q.apps.googleusercontent.com'
-client_secret='UsHozbjZlmUZGQwhIpatPlU2'
-redirect_uri = 'https://oauth-iesgn.rhcloud.com/google'
+client_id='1002052005922-rr7bc2g3n2721gnb0a61242gog3mt84v.apps.googleusercontent.com'
+client_secret='EzJ0lyZxhD_tkIAG5Y5PKbxO'
+redirect_uri = 'https://oauth-iesgn.rhcloud.com/oauth2callback'
 scope = ['https://www.googleapis.com/auth/youtube','https://www.googleapis.com/auth/userinfo.profile']
 token_url = "https://accounts.google.com/o/oauth2/token"
 

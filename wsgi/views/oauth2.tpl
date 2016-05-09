@@ -3,6 +3,7 @@
   </head>
   <body>
   	<h1>OAuth 2</h1>
+    <a href="http://www.ladrupalera.com/drupal/desarrollo/javascript/como-usar-una-api-de-google-con-autenticacion-traves-de-oauth2">Cómo usar una API de Google con autenticación a través de OAuth2 </a>
   	<p>Vamos a usar la API de google con autentificación oauth2</p>
     <ol>  	
       <li>El usuario hará clic en el botón de login para identificarse en nuestra aplicación web con una cuenta de google.</li>
