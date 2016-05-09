@@ -144,9 +144,15 @@ def info_youtube():
     oauth2 = OAuth2Session(client_id, redirect_uri=redirect_uri,scope=scope)
     authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth')
     response.set_cookie("oauth_state", state)
-    return "<a href='%s'>Perfil de youtube</a>" % authorization_url
+    redirect(authorization_url)
 
+@get('/oauth2callback')
+def get_token():
 
+  oauth2 = OAuth2Session(client_id, state=request.cookies.oauth_state,redirect_uri=redirect_uri)
+  token = oauth2.fetch_token(token_url, client_secret=client_secret,authorization_response=request.url)
+  response.set_cookie("token", token,secret='some-secret-key')
+  redirect("/perfil")
   
 @get('/perfil')
 def info():
