@@ -6,16 +6,13 @@
     <a href="http://www.ladrupalera.com/drupal/desarrollo/javascript/como-usar-una-api-de-google-con-autenticacion-traves-de-oauth2">Cómo usar una API de Google con autenticación a través de OAuth2 </a>
   	<p>Vamos a usar la API de google con autentificación oauth2</p>
     <ol>  	
-      <li>El usuario hará clic en el botón de login para identificarse en nuestra aplicación web con una cuenta de google.</li>
-      <li>Nuestra aplicación web solicitara a la api de google, permiso para acceder a los datos del usuario.</li>
-      <li>La api de google le pedirá al usuario permiso para que nuestra web acceda a sus datos.</li>
-      <li>Cuandodo el usuario acepte, la api de google retornara a nuestra web un código con el que solicitar un token valido.</li>
-      <li>Con este código, nuestra aplicación web solicitara un token valido para poder acceder a los datos del usuario.</li>
-      <li>La api de google retornara un token valido con el que poder hacer consultas.</li>
-      <li>Nuestra aplicación web solicitara los datos del usuario pasando el token devuelto antes.</li>
-      <li>La api de google retornara los datos del usuario.</li>
-      <li>Y con esto habrá acabado el proceso. En la imagen lateral se puede ver un gráfico del proceso para mejor comprensión.</li>
-    </ol>
+      <li>Tenemos que crar un proyecto en la consola de desarrollo de Google. De ese proyecto obtenermos client_id,client_secret y el redirect URI.</li>
+      <pre>
+      client_id='1002052005922-rr7bc2g3n2721gnb0a61242gog3mt84v.apps.googleusercontent.com'
+      client_secret='EzJ0lyZxhD_tkIAG5Y5PKbxO'
+      redirect_uri = 'https://oauth-iesgn.rhcloud.com/oauth2callback'
+      </pre>
+      <li>A continuación tenemos que crear una URL de autorización, a partir de la url base (token_url) y la credenciales anteriormente obtenidas. Además tendremos que indicar las APIS (servicios habilitados) que vamos a usar (scopes).</li>
     <a href="/youtube">Login a Google para ver el perfil de YouTube</a>
   </body>
 </html>
