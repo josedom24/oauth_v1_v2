@@ -4,6 +4,7 @@
   <body>
   	<h1>OAuth 1</h1>
   	<p>Vamos a usar la API de twitter con autentificación oauth1</p>
+    <a href="http://laxmarcaellugar.blogspot.com.es/2011/08/el-protocolo-de-autenticacion-oauth_08.html">Flujo oauth1</a>
   	<ul>
   		<li>Para comenzar, vamos a a acceder a la url de autentificación de twitter (AUTHENTICATE_URL)(https://api.twitter.com/oauth/authenticate?oauth_token=) y utilizamos el token de petición (request token)</li>
   		<li>Función get_request_token(): Para obtener el token de petición hacemos una petición POST a la url de solicitud de token de petición (REQUEST_TOKEN_URL)(https://api.twitter.com/oauth/request_token) de forma autentificada usando nuestras credenciales (CONSUMER_KEY,CONSUMER_SECRET)</li>
@@ -54,7 +55,7 @@
             return template('oauth1.tpl', authorize_url=authorize_url)
           		</pre>
 
-  		<li>Una vez que nos hemos autentificado de forma adecuda la aplicación (en este caso twitter) nos devuelve a la Callback URL (http://oauth-iesgn.rhcloud.com/callback) donde cogemos un token de verificación y obtenemos los tokens de acceso (ACCESS_TOKEN,ACCESS_TOKEN_SECRET)</li>
+  		<li>Una vez que nos hemos autentificado de forma adecuda la aplicación (en este caso twitter) nos devuelve a la Callback URL (http://oauth-iesgn.rhcloud.com/callback) donde cogemos un token de verificaciónm que nos permitirá a continuación obtener los tokens de acceso (ACCESS_TOKEN,ACCESS_TOKEN_SECRET)</li>
       <pre>
        def get_access_token(TOKENS):
  
