@@ -55,7 +55,7 @@
             return template('oauth1.tpl', authorize_url=authorize_url)
           		</pre>
 
-  		<li>Una vez que nos hemos autentificado de forma adecuda la aplicación (en este caso twitter) nos devuelve a la Callback URL (http://oauth-iesgn.rhcloud.com/callback) donde cogemos un token de verificaciónm que nos permitirá a continuación obtener los tokens de acceso (ACCESS_TOKEN,ACCESS_TOKEN_SECRET)</li>
+  		<li>Una vez que nos hemos autentificado de forma adecuada la aplicación (en este caso twitter) nos devuelve a la Callback URL (http://oauth-iesgn.rhcloud.com/callback) donde cogemos un token de verificación que nos permitirá a continuación obtener los tokens de acceso (ACCESS_TOKEN,ACCESS_TOKEN_SECRET)</li>
       <pre>
        def get_access_token(TOKENS):
  
