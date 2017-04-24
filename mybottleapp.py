@@ -7,6 +7,8 @@ from oauthlib.oauth2 import TokenExpiredError
 from urlparse import parse_qs
 import json
 import os
+from sys import argv
+
 REQUEST_TOKEN_URL = "https://api.twitter.com/oauth/request_token"
 AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate?oauth_token="
 ACCESS_TOKEN_URL = "https://api.twitter.com/oauth/access_token"
@@ -174,9 +176,7 @@ def salir():
 def server_static(filepath):
     return static_file(filepath, root='static')
 
-# This must be added in order to do correct path lookups for the views
-import os
-from bottle import TEMPLATE_PATH
-TEMPLATE_PATH.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi/views/')) 
 
-application=default_app()
+
+if __name__ == '__main__':
+  run(host='0.0.0.0',port=argv[1])
