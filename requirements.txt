@@ -1,2 +1,5 @@
 bottle
-gunicorn
+requests
+requests_oauthlib
+oauthlib
+urlparse
