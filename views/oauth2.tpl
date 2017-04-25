@@ -10,7 +10,7 @@
       <pre>
       client_id='1002052005922-rr7bc2g3n2721gnb0a61242gog3mt84v.apps.googleusercontent.com'
       client_secret='EzJ0lyZxhD_tkIAG5Y5PKbxO'
-      redirect_uri = 'https://oauth-iesgn.rhcloud.com/oauth2callback'
+      redirect_uri = 'https://prjd.herokuapp.com/oauth2callback'
       </pre>
       <li>A continuación tenemos que crear una URL de autorización, a partir de la url base (token_url) y la credenciales anteriormente obtenidas. Además tendremos que indicar las APIS (servicios habilitados) que vamos a usar (scopes).
       Si ya tenemos el token y es válido, no hace falta hacer la operación anterior y saltaríamos a la url donde obtenemos la información.</li>
