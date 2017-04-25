@@ -14,8 +14,7 @@ AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate?oauth_token="
 ACCESS_TOKEN_URL = "https://api.twitter.com/oauth/access_token"
 
 
-CONSUMER_KEY = os.environ["CONSUMER_KEY"]
-CONSUMER_SECRET = os.environ["CONSUMER_SECRET"]
+
 
 TOKENS = {}
 
@@ -29,6 +28,7 @@ def get_request_token():
     )
     r = requests.post(url=REQUEST_TOKEN_URL, auth=oauth)
     credentials = parse_qs(r.content)
+    print CONSUMER_SECRET
     TOKENS["request_token"] = credentials.get('oauth_token')[0]
     TOKENS["request_token_secret"] = credentials.get('oauth_token_secret')[0]
     
@@ -48,7 +48,7 @@ def get_access_token(TOKENS):
 
 @get('/')
 def index():
-  return template('index.tpl')
+  return template('index.tpl',t=)
 
 @get('/twitter')
 def twitter():
@@ -177,6 +177,4 @@ def server_static(filepath):
     return static_file(filepath, root='static')
 
 
-
-if __name__ == '__main__':
-  run(host='0.0.0.0',port=argv[1])
+run(host='0.0.0.0',port=argv[1])
