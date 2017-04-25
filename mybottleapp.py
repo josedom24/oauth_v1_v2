@@ -33,6 +33,7 @@ def get_request_token():
     print CONSUMER_SECRET
     print r.status_code
     print credentials
+    print r.content
     print REQUEST_TOKEN_URL
     TOKENS["request_token"] = credentials.get('oauth_token')[0]
     TOKENS["request_token_secret"] = credentials.get('oauth_token_secret')[0]
