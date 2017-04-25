@@ -31,7 +31,7 @@ def get_request_token():
     credentials = parse_qs(r.content)
     print CONSUMER_KEY
     print CONSUMER_SECRET
-    print s.status_code
+    print r.status_code
     print credentials
     print REQUEST_TOKEN_URL
     TOKENS["request_token"] = credentials.get('oauth_token')[0]
