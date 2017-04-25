@@ -29,12 +29,6 @@ def get_request_token():
     )
     r = requests.post(url=REQUEST_TOKEN_URL, auth=oauth)
     credentials = parse_qs(r.content)
-    print CONSUMER_KEY
-    print CONSUMER_SECRET
-    print r.status_code
-    print credentials
-    print r.content
-    print REQUEST_TOKEN_URL
     TOKENS["request_token"] = credentials.get('oauth_token')[0]
     TOKENS["request_token_secret"] = credentials.get('oauth_token_secret')[0]
     
@@ -54,7 +48,7 @@ def get_access_token(TOKENS):
 
 @get('/')
 def index():
-  return template('index.tpl',t=CONSUMER_KEY)
+  return template('index.tpl')
 
 @get('/twitter')
 def twitter():
@@ -115,12 +109,12 @@ def twitter_logout():
   redirect('/twitter')
 
 
-
+######################################################################################################################################################################
 ###oauth2
 
-client_id='1002052005922-rr7bc2g3n2721gnb0a61242gog3mt84v.apps.googleusercontent.com'
-client_secret='EzJ0lyZxhD_tkIAG5Y5PKbxO'
-redirect_uri = 'https://oauth-iesgn.rhcloud.com/oauth2callback'
+client_id=os.environ["client_id"]
+client_secret=os.environ["client_secret"]
+redirect_uri = 'https://prjd.herokuapp.com/oauth2callback'
 scope = ['https://www.googleapis.com/auth/youtube','https://www.googleapis.com/auth/userinfo.profile']
 token_url = "https://accounts.google.com/o/oauth2/token"
 
