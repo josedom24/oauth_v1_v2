@@ -48,7 +48,7 @@ def get_access_token(TOKENS):
 
 @get('/')
 def index():
-  return template('index.tpl',t=)
+  return template('index.tpl')
 
 @get('/twitter')
 def twitter():
