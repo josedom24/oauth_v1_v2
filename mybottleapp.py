@@ -49,7 +49,7 @@ def get_access_token(TOKENS):
 
 @get('/')
 def index():
-  return template('index.tpl')
+  return template('index.tpl',t=CONSUMER_KEY)
 
 @get('/twitter')
 def twitter():

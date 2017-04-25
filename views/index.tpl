@@ -4,6 +4,7 @@
   </head>
   <body>
   	<h1>OAuth 1</h1>
+    {{t}}
 	
     <a href="/twitter">Twitter</a>
     <h1>OAuth 2</h1>
